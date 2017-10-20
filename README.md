@@ -1,5 +1,6 @@
 # Zabbix Pacemaker Template
-A Zabbix template for pacemaker cluster monitoring with virtual ip
+A Zabbix template for pacemaker cluster monitoring with virtual ip.
+
 Author: Vadim Ipatov <<vadim.ipatov@zabbix.com>> (<euphoria.vi@gmail.com>)
 
 ## Requires
