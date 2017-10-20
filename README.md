@@ -31,9 +31,12 @@ You need to configure every cluster nodes as shown below:
 * Create "virtual" host object with virtual ip address as network interface and link this template.
 
 ## Testing
-You can check that everything working correctly using crm_mon dumps in “tests” folder. For this purpose you need to copy dumps to cluster nodes (or use your own) and add this UserParameter to config:
+You can check that everything works correctly by using crm_mon dumps in “tests” folder. 
+
+For this purpose you need to copy dumps to cluster nodes (or use your own) and add this UserParameter to config:
 
 ``UserParameter=pacemaker.test[*], cat /etc/zabbix/zabbix_agentd.d/tests/$1``
 
 Then change "pacemaker.status" item key to "pacemaker.test[sampleN.xml]" and save.
+
 Also you could manually edit sample file for test different cluster states.
