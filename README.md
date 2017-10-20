@@ -7,15 +7,17 @@ Author: Vadim Ipatov <<vadim.ipatov@zabbix.com>> (<euphoria.vi@gmail.com>)
 * Zabbix >=3.4 (because the template uses [dependent items](https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/dependent_items) and [value preprocessing](https://www.zabbix.com/documentation/3.4/manual/config/items/item#item_value_preprocessing) features that were introduced in 3.4)
 
 ## Metrics
-| Metric                           | Description                                                                             |
-|----------------------------------|-----------------------------------------------------------------------------------------|
-| pacemaker.cluster.dc             | Current cluster DC (Designated Coordinator)                                             |
-| pacemaker.cluster.failed_actions | The current number of failed actions                                                    |
-| pacemaker.cluster.maintenance    | Shows if the cluster is in the maintenance state                                        |
-| pacemaker.nodes.offline          | The current number of offline (or in the shutdown state) nodes                          |
-| pacemaker.resources.failed       | The current number of failed (non active or blocked) resources                          |
-| pacemaker.status                 | Service item for data gathering                                                         |
-| system.hostname                  | Node hostname. If it changes, it could mean that the VIP has been moved to another node |
+| Metric                              | Description                                                                             |
+|-------------------------------------|-----------------------------------------------------------------------------------------|
+| pacemaker.cluster.dc                | Current cluster DC (Designated Coordinator)                                             |
+| pacemaker.cluster.failed_actions    | The current number of failed actions                                                    |
+| pacemaker.cluster.maintenance       | Shows if the cluster is in the maintenance state                                        |
+| pacemaker.nodes.offline             | The current number of offline (or in the shutdown state) nodes                          |
+| pacemaker.process.corosync.active   | Shows if corosync daemon is in the running state                                        |
+| pacemaker.process.pacemakerd.active | Shows if pacemakerd daemon is in the running state                                      |
+| pacemaker.resources.failed          | The current number of failed (non active or blocked) resources                          |
+| pacemaker.status                    | Service item for data gathering                                                         |
+| system.hostname                     | Node hostname. If it changes, it could mean that the VIP has been moved to another node |
 
 ## Installation
 You need to configure every cluster nodes as shown below:
