@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<crm_mon version="1.1.16">
+    <summary>
+        <stack type="corosync" />
+        <current_dc present="true" version="1.1.16-12.el7_4.2-94ff4df" name="zabbix-node2.lan" id="2" with_quorum="true" />
+        <last_update time="Thu Oct 19 09:39:35 2017" />
+        <last_change time="Thu Oct 19 09:39:10 2017" user="root" client="crm_resource" origin="zabbix-node2.lan" />
+        <nodes_configured number="2" expected_votes="unknown" />
+        <resources_configured number="3" disabled="6" blocked="0" />
+        <cluster_options stonith-enabled="false" symmetric-cluster="true" no-quorum-policy="stop" maintenance-mode="false" />
+    </summary>
+    <nodes>
+        <node name="zabbix-node1.lan" id="1" online="true" standby="false" standby_onfail="false" maintenance="false" pending="false" unclean="false" shutdown="false" expected_up="true" is_dc="false" resources_running="0" type="member" />
+        <node name="zabbix-node2.lan" id="2" online="true" standby="false" standby_onfail="false" maintenance="false" pending="false" unclean="false" shutdown="false" expected_up="true" is_dc="true" resources_running="3" type="member" />
+    </nodes>
+    <resources>
+        <group id="zabbixgroup" number_resources="3" >
+             <resource id="virtual_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" target_role="stopped" active="true" orphaned="false" blocked="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1" >
+                 <node name="zabbix-node2.lan" id="2" cached="false"/>
+             </resource>
+             <resource id="webserver" resource_agent="ocf::heartbeat:apache" role="Started" target_role="stopped" active="true" orphaned="false" blocked="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1" >
+                 <node name="zabbix-node2.lan" id="2" cached="false"/>
+             </resource>
+             <resource id="zabbix-server" resource_agent="systemd:zabbix-server" role="Started" target_role="stopped" active="true" orphaned="false" blocked="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1" >
+                 <node name="zabbix-node2.lan" id="2" cached="false"/>
+             </resource>
+        </group>
+    </resources>
+    <node_attributes>
+        <node name="zabbix-node1.lan">
+        </node>
+        <node name="zabbix-node2.lan">
+        </node>
+    </node_attributes>
+    <node_history>
+        <node name="zabbix-node1.lan">
+            <resource_history id="virtual_ip" orphan="false" migration-threshold="1000000">
+                <operation_history call="87" task="monitor" interval="5000ms" last-rc-change="Thu Oct 19 09:33:04 2017" exec-time="199ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="91" task="stop" last-rc-change="Thu Oct 19 09:33:44 2017" last-run="Thu Oct 19 09:33:44 2017" exec-time="225ms" queue-time="0ms" rc="0" rc_text="ok" />
+            </resource_history>
+            <resource_history id="webserver" orphan="false" migration-threshold="1000000" fail-count="1000000" last-failure="Thu Oct 19 09:33:44 2017">
+                <operation_history call="88" task="start" last-rc-change="Thu Oct 19 09:33:04 2017" last-run="Thu Oct 19 09:33:04 2017" exec-time="40003ms" queue-time="0ms" rc="1" rc_text="unknown error" />
+                <operation_history call="89" task="stop" last-rc-change="Thu Oct 19 09:33:44 2017" last-run="Thu Oct 19 09:33:44 2017" exec-time="165ms" queue-time="0ms" rc="0" rc_text="ok" />
+            </resource_history>
+        </node>
+        <node name="zabbix-node2.lan">
+            <resource_history id="zabbix-server" orphan="false" migration-threshold="1000000">
+                <operation_history call="105" task="start" last-rc-change="Thu Oct 19 09:33:50 2017" last-run="Thu Oct 19 09:33:50 2017" exec-time="2159ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="106" task="monitor" interval="30000ms" last-rc-change="Thu Oct 19 09:33:53 2017" exec-time="3ms" queue-time="0ms" rc="0" rc_text="ok" />
+            </resource_history>
+            <resource_history id="virtual_ip" orphan="false" migration-threshold="1000000">
+                <operation_history call="90" task="probe" last-rc-change="Thu Oct 19 09:32:56 2017" last-run="Thu Oct 19 09:32:56 2017" exec-time="194ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="101" task="start" last-rc-change="Thu Oct 19 09:33:45 2017" last-run="Thu Oct 19 09:33:45 2017" exec-time="4274ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="102" task="monitor" interval="5000ms" last-rc-change="Thu Oct 19 09:33:49 2017" exec-time="189ms" queue-time="0ms" rc="0" rc_text="ok" />
+            </resource_history>
+            <resource_history id="webserver" orphan="false" migration-threshold="1000000">
+                <operation_history call="94" task="probe" last-rc-change="Thu Oct 19 09:32:56 2017" last-run="Thu Oct 19 09:32:56 2017" exec-time="203ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="103" task="start" last-rc-change="Thu Oct 19 09:33:49 2017" last-run="Thu Oct 19 09:33:49 2017" exec-time="1390ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="104" task="monitor" interval="60000ms" last-rc-change="Thu Oct 19 09:33:50 2017" exec-time="260ms" queue-time="0ms" rc="0" rc_text="ok" />
+            </resource_history>
+        </node>
+    </node_history>
+    <failures>
+        <failure op_key="webserver_start_0" node="zabbix-node1.lan" exitstatus="unknown error" exitreason="none" exitcode="1" call="88" status="Timed Out" last-rc-change="Thu Oct 19 09:33:04 2017" queued="0" exec="40003" interval="0" task="start" />
+    </failures>
+    <tickets>
+    </tickets>
+    <bans>
+    </bans>
+</crm_mon>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<crm_mon version="1.1.16">
+    <summary>
+        <stack type="corosync" />
+        <current_dc present="true" version="1.1.16-12.el7_4.2-94ff4df" name="zabbix-node2.lan" id="2" with_quorum="true" />
+        <last_update time="Thu Oct 19 04:30:32 2017" />
+        <last_change time="Wed Oct 18 10:05:32 2017" user="root" client="cibadmin" origin="zabbix-node2.lan" />
+        <nodes_configured number="2" expected_votes="unknown" />
+        <resources_configured number="3" disabled="0" blocked="0" />
+        <cluster_options stonith-enabled="false" symmetric-cluster="true" no-quorum-policy="stop" maintenance-mode="false" />
+    </summary>
+    <nodes>
+        <node name="zabbix-node1.lan" id="1" online="true" standby="false" standby_onfail="false" maintenance="false" pending="false" unclean="false" shutdown="false" expected_up="true" is_dc="false" resources_running="3" type="member" />
+        <node name="zabbix-node2.lan" id="2" online="true" standby="false" standby_onfail="false" maintenance="false" pending="false" unclean="false" shutdown="false" expected_up="true" is_dc="true" resources_running="0" type="member" />
+    </nodes>
+    <resources>
+        <group id="zabbixgroup" number_resources="3" >
+             <resource id="virtual_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1" >
+                 <node name="zabbix-node1.lan" id="1" cached="false"/>
+             </resource>
+             <resource id="webserver" resource_agent="ocf::heartbeat:apache" role="Started" active="true" orphaned="false" blocked="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1" >
+                 <node name="zabbix-node1.lan" id="1" cached="false"/>
+             </resource>
+             <resource id="zabbix-server" resource_agent="systemd:zabbix-server" role="Started" active="true" orphaned="false" blocked="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1" >
+                 <node name="zabbix-node1.lan" id="1" cached="false"/>
+             </resource>
+        </group>
+    </resources>
+    <node_attributes>
+        <node name="zabbix-node1.lan">
+        </node>
+        <node name="zabbix-node2.lan">
+        </node>
+    </node_attributes>
+    <node_history>
+        <node name="zabbix-node1.lan">
+            <resource_history id="webserver" orphan="false" migration-threshold="1000000">
+                <operation_history call="16" task="start" last-rc-change="Wed Oct 18 10:16:01 2017" last-run="Wed Oct 18 10:16:01 2017" exec-time="1396ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="17" task="monitor" interval="60000ms" last-rc-change="Wed Oct 18 10:16:03 2017" exec-time="261ms" queue-time="0ms" rc="0" rc_text="ok" />
+            </resource_history>
+            <resource_history id="virtual_ip" orphan="false" migration-threshold="1000000">
+                <operation_history call="14" task="start" last-rc-change="Wed Oct 18 10:15:57 2017" last-run="Wed Oct 18 10:15:57 2017" exec-time="4264ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="15" task="monitor" interval="5000ms" last-rc-change="Wed Oct 18 10:16:01 2017" exec-time="182ms" queue-time="0ms" rc="0" rc_text="ok" />
+            </resource_history>
+            <resource_history id="zabbix-server" orphan="false" migration-threshold="1000000">
+                <operation_history call="18" task="start" last-rc-change="Wed Oct 18 10:16:03 2017" last-run="Wed Oct 18 10:16:03 2017" exec-time="2130ms" queue-time="0ms" rc="0" rc_text="ok" />
+                <operation_history call="19" task="monitor" interval="30000ms" last-rc-change="Wed Oct 18 10:16:05 2017" exec-time="2ms" queue-time="0ms" rc="0" rc_text="ok" />
+            </resource_history>
+        </node>
+        <node name="zabbix-node2.lan">
+        </node>
+    </node_history>
+    <tickets>
+    </tickets>
+    <bans>
+    </bans>
+</crm_mon>
