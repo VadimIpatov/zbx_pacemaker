@@ -25,6 +25,8 @@ You need to configure every cluster nodes as shown below:
 
 ``UserParameter=pacemaker.status, sudo /usr/sbin/crm_mon --as-xml``
 
+* Restart zabbix_agent
+
 * Copy "configs/zbx_pacemaker.sudoers" into /etc/sudoers.d or manually add that rule:
 
 ``zabbix	ALL=NOPASSWD: /usr/sbin/crm_mon --as-xml``
