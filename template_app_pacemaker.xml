@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2017-10-20T11:52:54Z</date>
+    <date>2017-10-23T10:03:20Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -342,7 +342,9 @@
                             <name>Pacemaker</name>
                         </application>
                     </applications>
-                    <valuemap/>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
                     <logtimefmt/>
                     <preprocessing/>
                     <jmx_endpoint/>
@@ -383,7 +385,9 @@
                             <name>Pacemaker</name>
                         </application>
                     </applications>
-                    <valuemap/>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
                     <logtimefmt/>
                     <preprocessing/>
                     <jmx_endpoint/>
@@ -452,10 +456,10 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template App Pacemaker:proc.num[corosync].min(1m)}=0</expression>
+            <expression>{Template App Pacemaker:proc.num[corosync].max(30)}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
-            <name>{HOST.NAME}/pacemaker: corosync daemon isn't running!</name>
+            <name>{HOST.NAME}/pacemaker: corosync daemon isn't running</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
             <url/>
@@ -471,12 +475,12 @@
             <expression>{Template App Pacemaker:pacemaker.cluster.dc.diff(0)}=1 and {Template App Pacemaker:pacemaker.cluster.maintenance.str(true)}=0</expression>
             <recovery_mode>2</recovery_mode>
             <recovery_expression/>
-            <name>{HOST.NAME}/pacemaker: DC was changed!</name>
+            <name>{HOST.NAME}/pacemaker: DC was changed</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
             <url/>
             <status>0</status>
-            <priority>4</priority>
+            <priority>2</priority>
             <description/>
             <type>0</type>
             <manual_close>1</manual_close>
@@ -487,12 +491,12 @@
             <expression>{Template App Pacemaker:pacemaker.cluster.failed_actions.last()}&gt;0 and {Template App Pacemaker:pacemaker.cluster.maintenance.str(true)}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
-            <name>{HOST.NAME}/pacemaker: Failed actions found!</name>
+            <name>{HOST.NAME}/pacemaker: Failed actions found</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
             <url/>
             <status>0</status>
-            <priority>4</priority>
+            <priority>3</priority>
             <description/>
             <type>0</type>
             <manual_close>1</manual_close>
@@ -503,7 +507,7 @@
             <expression>{Template App Pacemaker:pacemaker.nodes.offline.last()}&gt;0 and {Template App Pacemaker:pacemaker.cluster.maintenance.str(true)}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
-            <name>{HOST.NAME}/pacemaker: One or more nodes goes offline!</name>
+            <name>{HOST.NAME}/pacemaker: One or more nodes goes offline</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
             <url/>
@@ -519,12 +523,12 @@
             <expression>{Template App Pacemaker:pacemaker.resources.failed.last()}&gt;0 and {Template App Pacemaker:pacemaker.cluster.maintenance.str(true)}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
-            <name>{HOST.NAME}/pacemaker: One or more resources have passed into &quot;failed&quot; state!</name>
+            <name>{HOST.NAME}/pacemaker: One or more resources have passed into &quot;failed&quot; state</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
             <url/>
             <status>0</status>
-            <priority>4</priority>
+            <priority>3</priority>
             <description/>
             <type>0</type>
             <manual_close>1</manual_close>
@@ -532,10 +536,10 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template App Pacemaker:proc.num[pacemakerd].min(1m)}=0</expression>
+            <expression>{Template App Pacemaker:proc.num[pacemakerd].max(30)}=0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
-            <name>{HOST.NAME}/pacemaker: pacemakerd daemon isn't running!</name>
+            <name>{HOST.NAME}/pacemaker: pacemakerd daemon isn't running</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
             <url/>
@@ -564,4 +568,19 @@
             <tags/>
         </trigger>
     </triggers>
+    <value_maps>
+        <value_map>
+            <name>Service state</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Down</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Up</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
 </zabbix_export>
