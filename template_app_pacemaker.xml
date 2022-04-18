@@ -394,11 +394,11 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>system.hostname</name>
+                    <name>node.name</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>system.hostname</key>
+                    <key>node.name</key>
                     <delay>5s</delay>
                     <history>7d</history>
                     <trends>0</trends>
@@ -552,7 +552,7 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template App Pacemaker:system.hostname.diff(0)}=1</expression>
+            <expression>{Template App Pacemaker:node.name.diff(0)}=1</expression>
             <recovery_mode>2</recovery_mode>
             <recovery_expression/>
             <name>{HOST.NAME}/pacemaker: Probably cluster migration detected (hostname was changed)</name>
